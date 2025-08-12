@@ -1,16 +1,31 @@
-type Question = { id: number; title: string; content: string; answers: number }
+"use client";
 
-export function QuestionList({ questions }: { questions: Question[] }) {
-  return (
-    <div className="space-y-4">
-      {questions.map((q) => (
-        <div key={q.id} className="p-4 border rounded">
-          <h3 className="font-bold">{q.title}</h3>
-          <p>{q.content}</p>
-          <p>{q.answers} answers</p>
-          {/* Add upvote, answer button */}
-        </div>
-      ))}
-    </div>
-  )
+import { FC } from "react";
+
+interface Question {
+  id: number;
+  title: string;
+  content: string;
+  answers: number;
 }
+
+interface QuestionListProps {
+  questions: Question[];
+}
+
+export const QuestionList: FC<QuestionListProps> = ({ questions }) => {
+  return (
+    <div className="mt-4">
+      <h3 className="text-lg font-semibold">Questions</h3>
+      <ul>
+        {questions.map((question) => (
+          <li key={question.id} className="p-2 border-b">
+            <h4 className="font-medium">{question.title}</h4>
+            <p>{question.content}</p>
+            <p>{question.answers} answers</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
