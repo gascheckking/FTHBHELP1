@@ -1,9 +1,10 @@
-export function CommunityFeed() {
+"use client";
+
+export const CommunityFeed = () => {
   return (
-    <div>
-      <h2>Community Feed</h2>
-      <p>Latest casts from /communitybase on Farcaster.</p>
-      {/* TODO: Integrate Farcaster API */}
+    <div className="mt-4">
+      <h3 className="text-lg font-semibold">Community Feed</h3>
+      <p>Latest community updates will appear here.</p>
     </div>
-  )
-}
+  );
+};
