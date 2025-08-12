@@ -1,35 +1,34 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
-import { Button } from './ui/button'
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
-export function AskForm() {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+export default function AskForm() {
+  const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Post to backend/Farcaster/Base
-    console.log('Posted:', { title, content })
-    setTitle('')
-    setContent('')
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+    const data = await res.json();
+    setResponse(data.text);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Input 
-        value={title} 
-        onChange={(e) => setTitle(e.target.value)} 
-        placeholder="Question Title" 
+      <Input
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        placeholder="Skriv din fråga"
       />
-      <Textarea 
-        value={content} 
-        onChange={(e) => setContent(e.target.value)} 
-        placeholder="Describe your issue (support markdown, code, images)" 
-      />
-      <Button type="submit">Post Question</Button>
+      <Textarea value={response} readOnly placeholder="Svar visas här" />
+      <Button type="submit">Skicka</Button>
     </form>
-  )
+  );
 }
