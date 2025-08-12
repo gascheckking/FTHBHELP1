@@ -1,5 +1,5 @@
 {
-  "name": "gemini-chatbot",
+  "name": "basehelpcast",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ai-sdk/google": "^0.0.1",
-    "ai": "^3.0.0",
+    "@radix-ui/react-tabs": "^1.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.441.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "shadcn-ui": "^0.0.4"  // Antagande för UI
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
+    "viem": "^2.21.1",
+    "wagmi": "^2.12.8"
   },
   "devDependencies": {
     "@types/node": "^20",
